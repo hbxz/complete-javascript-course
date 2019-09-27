@@ -9,7 +9,7 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer;
-
+var isGamePlaying; // state variable
 var winningBar = 10; 
 
 newGame(); // init view
@@ -35,10 +35,15 @@ function newGame() {
     document.querySelector('.player-0-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
+    isGamePlaying = true;
 }
 
 
 function roll() {
+    if (!isGamePlaying) {
+        return;
+    }
+
     var dice_number = Math.ceil(Math.random() * 6);
 
     // update view
@@ -79,12 +84,17 @@ function hold() {
 
     // check if player won the game
     if (scores[activePlayer] >= winningBar) {
+        gameEnd();
+    } else {
+        nextPlayer();
+    }
+
+    function gameEnd() {
         document.getElementById('name-' + activePlayer).textContent = 'Winner!';
         document.querySelector('.dice').style.display = 'none';
         console.log(document.querySelector('.dice').style.display);
         document.querySelector('.player-'+ activePlayer + '-panel').classList.add('winner');
         document.querySelector('.player-'+ activePlayer + '-panel').classList.remove('active');
-    } else {
-        nextPlayer();
+        isGamePlaying = false;
     }
 }
