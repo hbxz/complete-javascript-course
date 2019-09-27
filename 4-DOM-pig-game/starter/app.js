@@ -10,6 +10,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
+var winningBar = 10; 
 
 newGame(); // init view
 
@@ -46,7 +47,7 @@ function roll() {
     diceDom.src = 'dice-' + dice_number + '.png'; 
 
     // update the round score If the rolled number was NOT a 1
-    if (dice_number > 1) {
+    if (dice_number != 1) {
         // Add current score
         roundScore += dice_number;
         document.getElementById('current-' + activePlayer).textContent = roundScore;
@@ -77,7 +78,7 @@ function hold() {
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
     // check if player won the game
-    if (scores[activePlayer] >= 30) {
+    if (scores[activePlayer] >= winningBar) {
         document.getElementById('name-' + activePlayer).textContent = 'Winner!';
         document.querySelector('.dice').style.display = 'none';
         console.log(document.querySelector('.dice').style.display);
