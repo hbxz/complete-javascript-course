@@ -19,7 +19,7 @@ Change the game to follow these rules:
 
 
 var scores, roundScore, activePlayer;
-var isGamePlaying; // state variable
+var isGamePlaying;  // state variable
 var lastDice;       // recording last dice in a round; init as -1 at the round begining;
 var winningBar = 10; 
 
@@ -55,19 +55,19 @@ function roll() {
         return;
     }
 
-    var dice_number = Math.ceil(Math.random() * 6);
+    var diceNumber = Math.ceil(Math.random() * 6);
 
     // update view
     var diceDom = document.querySelector('.dice');
     diceDom.style.display = 'block';
-    diceDom.src = 'dice-' + dice_number + '.png'; 
+    diceDom.src = 'dice-' + diceNumber + '.png'; 
 
     // update the round score If the rolled number was NOT a 1
-    if (dice_number == 1 || (dice_number == 6 && lastDice == 6)) {
+    if (diceNumber == 1 || (diceNumber == 6 && lastDice == 6)) {
         nextPlayer();
     } else {
-        lastDice = dice_number;
-        roundScore += dice_number;
+        lastDice = diceNumber;
+        roundScore += diceNumber;
         document.getElementById('current-' + activePlayer).textContent = roundScore;
     }
 }
