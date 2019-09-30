@@ -116,7 +116,6 @@ function hold() {
         document.getElementById('name-' + activePlayer).textContent = 'Winner!';
         dice0.style.display = 'none';
         dice1.style.display = 'none';
-        console.log(document.querySelector('.dice').style.display);
         document.querySelector('.player-'+ activePlayer + '-panel').classList.add('winner');
         document.querySelector('.player-'+ activePlayer + '-panel').classList.remove('active');
         isGamePlaying = false;
