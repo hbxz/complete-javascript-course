@@ -20,6 +20,7 @@ Change the game to follow these rules:
 
 var scores, roundScore, activePlayer;
 var isGamePlaying; // state variable
+var lastDice;       // recording last dice in a round; init as -1 at the round begining;
 var winningBar = 10; 
 
 newGame(); // init view
@@ -62,18 +63,19 @@ function roll() {
     diceDom.src = 'dice-' + dice_number + '.png'; 
 
     // update the round score If the rolled number was NOT a 1
-    if (dice_number != 1) {
-        // Add current score
+    if (dice_number == 1 || (dice_number == 6 && lastDice == 6)) {
+        nextPlayer();
+    } else {
+        lastDice = dice_number;
         roundScore += dice_number;
         document.getElementById('current-' + activePlayer).textContent = roundScore;
-    } else {
-        nextPlayer();
     }
 }
 
 function nextPlayer() {
     activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+    lastDice = -1;
 
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
