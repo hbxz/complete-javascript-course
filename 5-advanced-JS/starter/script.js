@@ -1,9 +1,3 @@
-var john = {
-    name: 'John',
-    yourOfBirth: 1991,
-    job: 'student'
-};
-
 var Person = function(name, yourOfBirth, job) {
     this.name = name;
     this.yourOfBirth = yourOfBirth;
@@ -16,13 +10,10 @@ Person.prototype.calculateAge = function() {
 
 Person.prototype.lastName = "Smith";
 
-var jane = new Person('Jane', 1992, 'designer');
+var john = new Person('Jane', 1992, 'designer');
 var mark1 = new Person('Mark', 1988, 'teacher');
 var mark2 = new Person('Mark', 1988, 'teacher');
-
-console.log(mark1.calculateAge());
-console.log(mark1.lastName == "Smith");
-console.log(mark2.lastName == mark1.lastName);
-console.log(mark2.prototype); // undefined
-console.log(Person.prototype);
-console.log(mark2.prototype == mark1.prototype);
+console.log(mark2 == mark1, '\t mark2 == mark1');    
+console.log(mark2 === mark1, "\t mark2 === mark1");  
+console.log(mark1.__proto__, "\t mark1.__proto__");
+console.log(mark1.__proto__ === Person.prototype, "\t mark1.__proto__ === Person.prototype");
